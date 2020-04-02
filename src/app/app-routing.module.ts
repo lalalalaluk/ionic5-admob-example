@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { BannerComponent } from './banner/banner.component';
+import { InterstitialComponent } from './interstitial/interstitial.component';
+import { RewardvideoComponent } from './rewardvideo/rewardvideo.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  { path: '', redirectTo: 'Banner', pathMatch: 'full' },
+  { path: 'Banner', component: BannerComponent },
+  { path: 'Interstitial', component: InterstitialComponent },
+  { path: 'Rewardvideo', component: RewardvideoComponent },
 ];
 
 @NgModule({

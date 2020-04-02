@@ -1,3 +1,18 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <mat-sidenav-container class="example-container" (backdropClick)="close('')">
+    <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
+      <mat-accordion>  
+        <mat-list  *ngFor="let basic of basics;">
+          <mat-list-item>
+            <p><button routerLinkActive="active-link" mat-button (click)="close(basic)">{{basic}}</button></p>
+          </mat-list-item>
+        </mat-list>
+      </mat-accordion>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <button mat-button class="floatRight" (click)="sidenav.open()">+</button>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </ion-app>
