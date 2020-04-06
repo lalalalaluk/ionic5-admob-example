@@ -74,7 +74,11 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-admob-plus": {
+        "APP_ID_ANDROID": "ca-app-pub-2447910759836339~5127512795",
+        "PLAY_SERVICES_VERSION": "18.3.0"
+      }
     },
     "platforms": [
       "android"

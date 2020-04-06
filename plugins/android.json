@@ -25,6 +25,11 @@
     },
     "cordova-plugin-ionic-keyboard": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-admob-plus": {
+      "APP_ID_ANDROID": "ca-app-pub-2447910759836339~5127512795",
+      "PLAY_SERVICES_VERSION": "18.3.0",
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {}

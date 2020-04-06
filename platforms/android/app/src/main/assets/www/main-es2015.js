@@ -451,7 +451,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>\n  banner works!\n</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<p>\n  banner works!\n</p>\n<button (click)=\"close()\">close ad</button>");
 
 /***/ }),
 
@@ -966,7 +966,41 @@ __webpack_require__.r(__webpack_exports__);
 
 let BannerComponent = class BannerComponent {
     constructor() { }
-    ngOnInit() { }
+    ngOnInit() {
+        document.addEventListener('admob.banner.load', () => {
+            console.log('admob banner loaded');
+        });
+        document.addEventListener('admob.banner.load_fail', () => {
+            console.log('admob banner loaded fail');
+        });
+        document.addEventListener('admob.banner.open', () => {
+            console.log('Called when user tap on the banner ad.');
+        });
+        document.addEventListener('admob.banner.exit_app', () => {
+            console.log('Called after Open Event, when a user click opens another app (such as the Google Play), backgrounding the current app.');
+        });
+        document.addEventListener('admob.banner.close', () => {
+            console.log("When a user returns to the app after viewing an ad's destination URL, this method is invoked. Your app can use\
+       it to resume suspended activities or perform any other work necessary to make itself ready for interaction.");
+        });
+        admob.setDevMode(true);
+        admob.banner.show({
+            id: {
+                android: 'ca-app-pub-xxx~xxx',
+                ios: 'ca-app-pub-xxx~xxx',
+            },
+            position: 'top',
+        });
+    }
+    close() {
+        admob.banner.hide({
+            id: {
+                android: 'ca-app-pub-xxx~xxx',
+                ios: 'ca-app-pub-xxx~xxx',
+            },
+            position: 'top',
+        });
+    }
 };
 BannerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -977,6 +1011,32 @@ BannerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
 ], BannerComponent);
 
+/*
+  source: https://admob-plus.github.io/docs/show-banner.html
+
+  interface IBannerRequest extends IAdRequest {
+    position?: BannerPosition
+    size?: AdSize
+  }
+
+  type BannerPosition = 'bottom' | 'top'
+
+  type AdSize =
+    | AdSizeType
+    | {
+        width: number;
+        height: number;
+      }
+
+  enum AdSizeType {
+    BANNER,
+    LARGE_BANNER,
+    MEDIUM_RECTANGLE,
+    FULL_BANNER,
+    LEADERBOARD,
+    SMART_BANNER,
+  }
+*/
 
 
 /***/ }),
