@@ -5,7 +5,7 @@ import { InterstitialComponent } from './interstitial/interstitial.component';
 import { RewardvideoComponent } from './rewardvideo/rewardvideo.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'Banner', pathMatch: 'full' },
+  { path: '', redirectTo: 'Rewardvideo', pathMatch: 'full' },
   { path: 'Banner', component: BannerComponent },
   { path: 'Interstitial', component: InterstitialComponent },
   { path: 'Rewardvideo', component: RewardvideoComponent },

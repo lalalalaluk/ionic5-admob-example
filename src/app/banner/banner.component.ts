@@ -40,7 +40,7 @@ export class BannerComponent implements OnInit {
         android: 'ca-app-pub-xxx~xxx',
         ios: 'ca-app-pub-xxx~xxx',
       },
-      position: 'top',
+      // position: 'top',
     });
   }
 
@@ -49,8 +49,7 @@ export class BannerComponent implements OnInit {
       id: {
         android: 'ca-app-pub-xxx~xxx',
         ios: 'ca-app-pub-xxx~xxx',
-      },
-      position: 'top',
+      }
     });
   }
 }

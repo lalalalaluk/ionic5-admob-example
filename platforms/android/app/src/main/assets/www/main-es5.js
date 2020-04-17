@@ -186,7 +186,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<p>\n  banner works!\n</p>\n<button (click)=\"close()\">close ad</button>";
+    __webpack_exports__["default"] = "<p>\n  banner works!\n</p>\n<button (click)=\"show()\">show advertise</button>\n\n<button (click)=\"hide()\">close advertise</button>";
     /***/
   },
 
@@ -881,7 +881,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var routes = [{
       path: '',
-      redirectTo: 'Banner',
+      redirectTo: 'Rewardvideo',
       pathMatch: 'full'
     }, {
       path: 'Banner',
@@ -1269,24 +1269,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             console.log("When a user returns to the app after viewing an ad's destination URL, this method is invoked. Your app can use\
        it to resume suspended activities or perform any other work necessary to make itself ready for interaction.");
           });
+        }
+      }, {
+        key: "show",
+        value: function show() {
           admob.setDevMode(true);
           admob.banner.show({
             id: {
               android: 'ca-app-pub-xxx~xxx',
               ios: 'ca-app-pub-xxx~xxx'
-            },
-            position: 'top'
+            }
           });
         }
       }, {
-        key: "close",
-        value: function close() {
+        key: "hide",
+        value: function hide() {
           admob.banner.hide({
             id: {
               android: 'ca-app-pub-xxx~xxx',
               ios: 'ca-app-pub-xxx~xxx'
-            },
-            position: 'top'
+            }
           });
         }
       }]);
@@ -1392,7 +1394,38 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(InterstitialComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          document.addEventListener('admob.interstitial.load', function () {
+            console.log('Called when interstitial ad is loaded.');
+          });
+          document.addEventListener('admob.interstitial.load_fail', function () {
+            console.log('Called when interstitial ad request failed..');
+          });
+          document.addEventListener('admob.interstitial.open', function () {
+            console.log('Called when interstitial ad opens a overlay that covers the screen.');
+          });
+          document.addEventListener('admob.interstitial.close', function () {
+            console.log('Called when interstitial ad is closed.');
+          });
+          document.addEventListener('admob.interstitial.exit_app', function () {
+            console.log('alled when interstitial ad leaves the application (e.g., to go to the browser).');
+          });
+          this.showAd();
+        }
+      }, {
+        key: "showAd",
+        value: function showAd() {
+          admob.setDevMode(true);
+          admob.interstitial.load({
+            id: {
+              // replace with your ad unit IDs
+              android: 'ca-app-pub-xxx/yyy',
+              ios: 'ca-app-pub-xxx/zzz'
+            }
+          }).then(function () {
+            return admob.interstitial.show();
+          });
+        }
       }]);
 
       return InterstitialComponent;
@@ -1469,7 +1502,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(RewardvideoComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          document.addEventListener('admob.reward_video.load', function () {
+            console.log('Called when reward video ad is loaded.');
+          });
+          document.addEventListener('admob.reward_video.load_fail', function () {
+            console.log('Called when reward video ad request failed.');
+          });
+          document.addEventListener('admob.reward_video.open', function () {
+            console.log('Called when reward video ad opens a overlay that covers the screen.');
+          });
+          document.addEventListener('admob.reward_video.close', function () {
+            console.log('Called when reward video ad is closed.');
+          });
+          document.addEventListener('admob.reward_video.start', function () {
+            console.log('Called when reward video ad starts to play.');
+          });
+          document.addEventListener('admob.reward_video.complete', function () {
+            console.log('Called when reward video ad completes playing.');
+          });
+          document.addEventListener('admob.reward_video.reward', function () {
+            console.log('Called when reward video ad has triggered a reward.');
+          });
+          document.addEventListener('admob.reward_video.exit_app', function () {
+            console.log('Called when reward video ad leaves the application (e.g., to go to the browser).');
+          });
+          this.showAd();
+        }
+      }, {
+        key: "showAd",
+        value: function showAd() {
+          admob.setDevMode(true);
+          admob.rewardVideo.load({
+            id: {
+              // replace with your ad unit IDs
+              android: 'ca-app-pub-xxx/yyy',
+              ios: 'ca-app-pub-xxx/zzz'
+            }
+          }).then(function () {
+            return admob.rewardVideo.show();
+          });
+        }
       }]);
 
       return RewardvideoComponent;
